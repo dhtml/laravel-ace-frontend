@@ -27,7 +27,7 @@ export default function Login({setToken}) {
             email,
             password
         });
-        if(typeof(data.token)==='undefined') {
+        if (typeof (data.token) === 'undefined') {
             handleShow();
         } else {
             setToken(data.token);
@@ -35,57 +35,57 @@ export default function Login({setToken}) {
     }
 
     return (<div className="auth-wrapper">
-            <div className="auth-inner">
-                    <Modal
-                        show={show}
-                        onHide={handleClose}
-                        backdrop="static"
-                        keyboard={false}
-                    >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Authentication Error</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            Please check your authentication details
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
+        <div className="auth-inner">
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Authentication Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Please check your authentication details
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
-                <form onSubmit={handleSubmit}>
-                    <h3>Sign In</h3>
+            <form onSubmit={handleSubmit}>
+                <h3>Sign In</h3>
 
-                    <div className="mb-3">
-                        <label>Email address</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            placeholder="Enter email"
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                    </div>
+                <div className="mb-3">
+                    <label>Email address</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                </div>
 
-                    <div className="mb-3">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            placeholder="Enter password"
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                    </div>
+                <div className="mb-3">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </div>
 
-                    <div className="d-grid">
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>)
+                <div className="d-grid">
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>)
 }
 
 Login.propTypes = {

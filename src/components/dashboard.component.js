@@ -1,53 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import { Table } from 'react-bootstrap';
+import React from 'react'
+import {Pagination, Table} from 'react-bootstrap';
+import {Link} from "react-router-dom";
 
-export default function Dashboard({token}) {
-    const [appState, setAppState] = useState({
-        loading: false,
-        customers: null,
-    });
+export default function Dashboard({appState, setAppState}) {
 
-    var reptiles = ["alligator", "snake", "lizard"];
+    const goBack = () => {
+        if(appState.page>1) {
+            setAppState({...appState, loading: false, page: appState.page-1 });
+        }
+    }
 
-        return (
-            <div>
-            {reptiles.map((each, index) => <div key={index}>{each}</div>)}
+    const goForward = () => {
+        setAppState({...appState, loading: false, page: appState.page+1 });
+    }
 
-            <Table striped bordered hover size="sm">
+    return (
+        <div>
+            <Table striped hover>
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Gender</th>
                     <th>City</th>
                     <th>Company</th>
                     <th>Title</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
+                    <th>Location</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td colSpan={2}>Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+
+                {appState.customers.data.map((customer, index) => {
+                    return  (<tr key={index}>
+                            <td>{customer.id}</td>
+                            <td>{customer.first_name}</td>
+                            <td>{customer.last_name}</td>
+                            <td>{customer.city}</td>
+                            <td>{customer.company}</td>
+                            <td>{customer.title}</td>
+                            <td>{customer.geolocation.longitude + ', ' + customer.geolocation.latitude}</td>
+                            <td><a href="#" className="more-details">Show Details</a></td>
+                        </tr>
+                    )
+                })}
                 </tbody>
             </Table>
-            </div>
-        )
+
+            <Pagination>
+                <Pagination.First />
+                <Pagination.Prev onClick={goBack}>Previous</Pagination.Prev>
+                <Pagination.Ellipsis />
+                <Pagination.Item active>{appState.current_page}</Pagination.Item>
+                <Pagination.Ellipsis />
+                <Pagination.Next onClick={goForward}>Next</Pagination.Next>
+            </Pagination>
+            <br></br>
+        </div>
+    )
 }

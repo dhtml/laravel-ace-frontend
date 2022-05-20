@@ -45,3 +45,11 @@
 .navbar-brand {
  color:#fff;
 }
+
+.nav-item {
+  color:#fff;
+}
+
+.link {cursor:pointer;}
+
+.more-details {text-decoration: none;}
