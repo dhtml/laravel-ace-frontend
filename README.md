@@ -15,3 +15,8 @@ Steps to use:
 4. The default account to login is :
 email: admin@laravel.com
 password: password
+
+
+DOCKER
+1. Run docker-compose up -d --build
+2. Launch the app on http://localhost:3001/
