@@ -9,7 +9,7 @@ import Dashboard from './components/dashboard.component'
 function App() {
   const [token, setToken] = useState();
 
-  if(token) {
+  if(!token) {
     return <Login setToken={setToken} />
   }
 

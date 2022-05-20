@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 export default class Dashboard extends Component {
     render() {
