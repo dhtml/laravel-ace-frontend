@@ -6,8 +6,8 @@ import {Button, Modal} from "react-bootstrap";
 export default function Login({setToken}) {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const closeModal = () => setShow(false);
+    const openModal = () => setShow(true);
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -28,7 +28,7 @@ export default function Login({setToken}) {
             password
         });
         if (typeof (data.token) === 'undefined') {
-            handleShow();
+            openModal();
         } else {
             setToken(data.token);
         }
@@ -38,7 +38,7 @@ export default function Login({setToken}) {
         <div className="auth-inner">
             <Modal
                 show={show}
-                onHide={handleClose}
+                onHide={closeModal}
                 backdrop="static"
                 keyboard={false}
             >
@@ -49,7 +49,7 @@ export default function Login({setToken}) {
                     Please check your authentication details
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="secondary" onClick={closeModal}>
                         Close
                     </Button>
                 </Modal.Footer>

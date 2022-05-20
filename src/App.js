@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard.component'
 import Loading from "./components/loading.component";
 import useToken from './useToken';
 import configData from "./config.json";
+import Customer from "./components/customer.component";
 
 function App() {
     const [appState, setAppState] = useState({
@@ -39,7 +40,7 @@ function App() {
                     },500);
                 }
             });
-    }, [appState]);
+    }, [appState,token]);
 
     if (!token) {
         return <Login setToken={setToken}/>
@@ -88,7 +89,7 @@ function App() {
 
                 <div className="container">
                     <Routes>
-                        <Route exact path="/" element={<Dashboard appState={appState} setAppState={setAppState}/>}/>
+                        <Route exact path="/" element={<Dashboard appState={appState} setAppState={setAppState} token={token}/>}/>
                     </Routes>
                 </div>
             </div>
