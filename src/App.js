@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-
 import Login from './components/login.component'
 import Dashboard from './components/dashboard.component'
+import useToken from './useToken';
 
 function App() {
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
+
+  console.log('tok',token);
 
   if(!token) {
     return <Login setToken={setToken} />
@@ -30,7 +32,7 @@ function App() {
 
           <div className="container">
             <Routes>
-              <Route exact path="/" element={<Dashboard />} />
+              <Route exact path="/" element={<Dashboard token={token} />} />
             </Routes>
           </div>
       </div>

@@ -1,16 +1,31 @@
-import React, {Component} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
 
-export default class Dashboard extends Component {
-    render() {
+export default function Dashboard({token}) {
+    const [appState, setAppState] = useState({
+        loading: false,
+        customers: null,
+    });
+
+    var reptiles = ["alligator", "snake", "lizard"];
+
         return (
+            <div>
+            {reptiles.map((each, index) => <div key={index}>{each}</div>)}
+
             <Table striped bordered hover size="sm">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>City</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +48,6 @@ export default class Dashboard extends Component {
                 </tr>
                 </tbody>
             </Table>
+            </div>
         )
-    }
 }
